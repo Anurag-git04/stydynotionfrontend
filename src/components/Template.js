@@ -1,9 +1,14 @@
 import React from 'react'
+import Signupform from './Signupform'
+import Loginform from './Loginform'
 import frameImage from '../assets/frame.png'
 
-const Template = ({title,desc1,desc2, image, formtype, setInLoggedIn}) => {
+const Template = ({title,desc1,desc2, image, formtype, setIsLoggedIn}) => {
+    console.log("ye rha mera form type");
+    console.log(formtype)
   return (
     <div>
+        
 
         <div>
             <h1>{title}</h1>
@@ -11,7 +16,9 @@ const Template = ({title,desc1,desc2, image, formtype, setInLoggedIn}) => {
                 <span>{desc1}</span>
                 <span>{desc2}</span>
             </p>
-            {formtype === 'signup' ? (<Signupform/>) : (<Loginform/>)}
+            {formtype == "signup" ? 
+            (<Signupform setIsLoggedIn={setIsLoggedIn}/>):
+            (<Loginform setIsLoggedIn={setIsLoggedIn}/>)}
 
             <div>
                 <div></div>
@@ -29,10 +36,6 @@ const Template = ({title,desc1,desc2, image, formtype, setInLoggedIn}) => {
             <img src={frameImage} alt='pattern' width= {558} height={504} loading='lazy' />
             <img src={image} alt='students' width= {558} height={490} loading='lazy' />
         </div>
-
-        
-
-
 
     </div>
   )

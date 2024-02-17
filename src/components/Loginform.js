@@ -1,30 +1,59 @@
 import React, { useState } from 'react'
+import toast from 'react-hot-toast'
 import {AiOutlineEye,AiOutlineEyeInvisible} from 'react-icons/ai'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 
-const Loginform = () => {
-    const [formdata, setFormdata] = useState({email:"",password:""})
+const Loginform = ({setIsLoggedIn}) => {
+
+    const navigate = useNavigate();
+
+    const [formdata, setFormdata] = useState({
+        email:"",password:""
+    })
+
     const [showpassword, setShowpassword] = useState(false)
+    
     function changeHandler(event){
-        setFormdata((prevData)=>({
+        setFormdata( (prevData) => (
+            {
             ...prevData,
             [event.target.name]:event.target.value
-        }))
+            }
+        ))
     }
+
+    function submitHandler(event){
+        event.preventDefault()
+        setIsLoggedIn(true)
+        toast.success("Logged In")
+        navigate("/dashboard")
+    }
+    
   return (
-    <div>
-        <form action="">
+        <form onSubmit={submitHandler}>
             <label>
                 <p>
-                    Email Address<sub>*</sub>
+                    Email Address<sup>*</sup>
                 </p>
-                <input type="email" required value={formdata.email} placeholder='Email Address' name='email' onChange={changeHandler}  />
+                <input type="email" 
+                    required 
+                    value={formdata.email} 
+                    placeholder='Enter Email Addresh' 
+                    name='email' 
+                    onChange={changeHandler}  
+                />
             </label>
             <label>
                 <p>
                     Password<sub>*</sub>
                 </p>
-                <input type={showpassword ? ("text") : ("password") } required name='password' value={formdata.password} placeholder='Enter Password' onChange={changeHandler}  />
+                <input type={showpassword ? ("text") : ("password") } 
+                    required 
+                    name='password' 
+                    value={formdata.password} 
+                    placeholder='Enter Password' 
+                    onChange={changeHandler}
+                />
             </label>
             
             <span onClick={()=>setShowpassword((prev)=> !prev)}>
@@ -42,8 +71,6 @@ const Loginform = () => {
             </button>
 
         </form>
-       
-    </div>
   )
 }
 
