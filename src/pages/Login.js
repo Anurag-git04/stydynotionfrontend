@@ -1,15 +1,15 @@
 import React from 'react'
 import Template from '../components/Template'
-import LoginImg from '../assets/login.png'
+import loginImg from "../assets/login.png"
 
 const Login = ({setIsLoggedIn}) => {
   return (
     <Template
       title="Welcome Back"
-      desc1="Build skills for today,tomorrow, and beyond."
+      desc1="Build skills for today, tomorrow, and beyond."
       desc2="Education to future-proof your career."
-      image={LoginImg}
-      formType="login"
+      image={loginImg}
+      formtype="login"
       setIsLoggedIn={setIsLoggedIn}
     />
   )
